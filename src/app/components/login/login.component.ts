@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { combineLatest } from 'rxjs';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   private _email = new FormControl('', [Validators.required, Validators.email]);
   private _password = new FormControl('', Validators.required);
@@ -19,14 +20,12 @@ export class LoginComponent implements OnInit {
   public get password() {
     return this._password;
   }
-  constructor(private _authService: AuthService) {
-  }
 
-  ngOnInit(): void {
-    combineLatest([
-      this.email.valueChanges,
-      this.password.valueChanges
-    ]).subscribe(([email, pass]) => console.log(email, pass))
+  constructor(
+    private _authService: AuthService,
+    private _snackbar: SnackbarService,
+    private _router: Router,
+  ) {
   }
 
   onSubmit() {
@@ -37,6 +36,9 @@ export class LoginComponent implements OnInit {
     this._authService.login(
       this.email.value as string,
       this.password.value as string
-    ).subscribe()
+    ).subscribe(session => {
+      this._router.navigate(['/orders']);
+      this._snackbar.success(`Bienvenue, ${session?.user?.email}`);
+    })
   }
 }

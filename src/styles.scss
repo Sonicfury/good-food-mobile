@@ -4,3 +4,31 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-snack-bar-container {
+  &.custom-snackbar {
+     &--success {
+      --mdc-snackbar-container-color: hsl(105, 40%, 65%);
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+     }
+
+     &--error {
+      --mdc-snackbar-container-color: hsl(10, 40%, 60%);
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+     }
+
+     &--info {
+      --mdc-snackbar-container-color: hsl(235, 50%, 77%);
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+     }
+
+     &--warning {
+      --mdc-snackbar-container-color: hsl(72, 31%, 57%);
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+     }
+  }
+}

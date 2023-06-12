@@ -10,14 +10,17 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatCardModule } from "@angular/material/card";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { LoginComponent } from './components/login/login.component';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
