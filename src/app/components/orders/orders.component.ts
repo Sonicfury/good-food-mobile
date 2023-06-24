@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/models/order';
-import { AuthService } from 'src/app/services/auth.service';
 import { OrdersService, State } from 'src/app/services/orders.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
@@ -15,7 +14,6 @@ export class OrdersComponent implements OnInit {
   deliveredOrders: Order[] = [];
 
   constructor(
-    private _auth: AuthService,
     private _ordersService: OrdersService,
     private _snackbar: SnackbarService
   ) {}
