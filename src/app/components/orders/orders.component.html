@@ -4,16 +4,14 @@
   <div class="flex flex-col gap-2">
     <h2 class="text-2xl">À livrer</h2>
     <div class="flex flex-col gap-4" *ngFor="let order of orders">
-      <div class="flex justify-between w-full items-center p-4 bg-gray-200 rounded">
+      <div
+        class="flex justify-between w-full items-center p-4 bg-gray-200 rounded"
+      >
         <div class="flex flex-col gap-4 h-full">
-          <span>
-            No: {{ order.id }}
-          </span>
-          <span>
-            Prix: {{order.total}} eur
-          </span>
+          <span> No: {{ order.id }} </span>
+          <span> Prix: {{ order.total }} eur </span>
         </div>
-        <button mat-fab color="primary" (click)="markAs('delivered', order)">
+        <button mat-fab color="primary" (click)="markAs('DONE', order)">
           <mat-icon>check</mat-icon>
         </button>
       </div>
@@ -23,16 +21,14 @@
   <div class="flex flex-col gap-2">
     <h2 class="text-2xl">Livrées</h2>
     <div class="flex flex-col gap-4" *ngFor="let order of deliveredOrders">
-      <div class="flex justify-between w-full items-center p-4 bg-gray-200 rounded">
+      <div
+        class="flex justify-between w-full items-center p-4 bg-gray-200 rounded"
+      >
         <div class="flex flex-col gap-4 h-full">
-          <span>
-            No: {{ order.id }}
-          </span>
-          <span>
-            Prix: {{order.total}} eur
-          </span>
+          <span> No: {{ order.id }} </span>
+          <span> Prix: {{ order.total }} eur </span>
         </div>
-        <button mat-fab color="warn" (click)="markAs('to_deliver', order)">
+        <button mat-fab color="warn" (click)="markAs('TO_DELIVER', order)">
           <mat-icon>cancel</mat-icon>
         </button>
       </div>
