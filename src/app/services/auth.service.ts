@@ -20,7 +20,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<Session> {
 
-    return this._http.post<{ success: boolean, data: Session, message: string }>(this._baseUrl, { email, password })
+    return this._http.post<{ success: boolean, data: Session, message: string }>(this._baseUrl, { email: email.toLowerCase(), password })
       .pipe(
         tap(resp => this.session = resp?.data),
         map(resp => resp?.data)
