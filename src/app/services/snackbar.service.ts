@@ -20,7 +20,7 @@ export class SnackbarService {
   };
 
   private static readonly DEFAULT_OPTIONS: SnackbarOptions = {
-    duration: 4000,
+    duration: 40000,
     horizontalPosition: 'left',
     verticalPosition: 'bottom',
     panelClass: [SnackbarService.STATUS_CLASS['info']],

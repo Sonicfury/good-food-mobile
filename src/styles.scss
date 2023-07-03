@@ -6,10 +6,14 @@
 @tailwind utilities;
 
 html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-body { @apply font-sans; }
+body {
+  @apply pt-12 font-sans;
+}
+
 
 .mat-mdc-snack-bar-container {
+
+  --mdc-snackbar-supporting-text-font: 'Poppins, sans-serif'
   &.custom-snackbar {
      &--success {
       --mdc-snackbar-container-color: hsl(105, 40%, 65%);
