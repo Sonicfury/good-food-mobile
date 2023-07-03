@@ -5,7 +5,7 @@ import {
 } from '@supabase/supabase-js';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
-import { Order } from '../models/order';
+import { Order, OrderDetails } from '../models/order';
 import { AuthService } from './auth.service';
 import { SupabaseService } from './supabase.service';
 
@@ -30,7 +30,7 @@ export class OrdersService {
   constructor(
     private _supabaseService: SupabaseService,
     private _auth: AuthService
-  ) {}
+  ) { }
 
   markAs(state: State, order: Order): Observable<number> {
     return from(
@@ -39,6 +39,32 @@ export class OrdersService {
         .update({ state: OrdersService.ORDER_STATE[state] })
         .eq('id', order.id)
     ).pipe(switchMap((_) => of(order.id)));
+  }
+
+  // getDetails(orderId: number): Observable<OrderDetails> {
+  //   return from(
+  //     this._supabaseService.supabase
+  //       .from('orders')
+  //       .select('
+  //               id,
+  //               total,
+  //               customer:customer_id(id, fistname, lastname),
+  //               address:addresses_id(address1, address2, zipCode, city, phone),
+  //               products:ordereds(name: string, quantity: number)
+  //               ')
+  //   ).pipe(map(({data}) => data as OrderDetails))
+  // }
+  //
+  getDetails(orderId: number): Observable<any> {
+    return from(
+      this._supabaseService.supabase
+        .from('orders')
+        .select(`id, total,
+                 customer:customer_id(id,firstname, lastname),
+                 address:addresses_id(address1, address2, zipCode, city, phone)`)
+        .eq('id', orderId)
+        .single()
+    ).pipe(map(({ data }) => data))
   }
 
   private _getByEmployeeId(employeeId: string): Observable<Order[]> {

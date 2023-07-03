@@ -1,18 +1,23 @@
 <div class="h-screen flex justify-content items-center touch-manipulation">
-  <mat-card class="flex flex-col w-11/12 h-96 mx-auto gap-4 p-4">
-    <h1 class="text-3xl">Good Food</h1>
-    <h2 class="text-xl">Delivery</h2>
+  <div class="flex flex-col w-11/12 mx-auto gap-4 p-4 rounded-lg bg-gray-100 shadow-lg">
+    <h1 class="text-4xl font-display text-primary">Good Food</h1>
+    <h2 class="text-xl font-sans font-bold mb-8">Delivery</h2>
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput type="text"  [formControl]="email">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput type="password"  [formControl]="password">
+      <input class="!font-sans" matInput type="password"  [formControl]="password">
     </mat-form-field>
     <button
       (click)="onSubmit()"
-      mat-flat-button
-      color="primary">Se connecter</button>
-  </mat-card>
+      mat-fab
+      extended
+      class="bg-primary"
+      >
+      <mat-icon>login</mat-icon>
+      Se connecter
+    </button>
+  </div>
 </div>

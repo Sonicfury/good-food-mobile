@@ -1,16 +1,33 @@
-<div class="flex flex-col gap-8 p-4">
-  <h1 class="text-3xl font-bold">Commandes</h1>
-
-  <div class="flex flex-col gap-2">
-    <h2 class="text-2xl">À livrer</h2>
-    <div class="flex flex-col gap-4" *ngFor="let order of orders">
+<div class="flex flex-col gap-16 p-4">
+  <div class="flex justify-between items-center">
+    <h1 class="text-4xl font-display text-primary">Commandes</h1>
+    <button mat-fab class="bg-primary" aria-label="Déconnexion" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+  <div class="flex flex-col gap-4">
+    <h2 class="text-2xl font-display text-primary">À livrer</h2>
+    <div class="flex flex-col gap-8" *ngFor="let order of orders">
       <div
-        class="flex justify-between w-full items-center p-4 bg-gray-200 rounded"
+        class="flex justify-between w-full items-center p-4 bg-gray-200 rounded-xl shadow-lg"
       >
-        <div class="flex flex-col gap-4 h-full">
-          <span> No: {{ order.id }} </span>
-          <span> Prix: {{ order.total }} eur </span>
-        </div>
+        <details (click)="onDetailsToggle(order.id)"
+          class="cursor-pointer">
+          <summary class="rounded-xl p-2 bg-slate-500 text-white"><strong>Commande {{order.id}}</strong> - {{order.total}}€</summary>
+
+          <div *ngIf="ordersDetails[order.id]"
+            class="mt-4"
+            (click)="openMap($event, order.id)">
+            <span class="font-bold">
+              {{ordersDetails[order.id]?.details.customer?.firstname}} {{ordersDetails[order.id]?.details.customer?.lastname}}
+            </span>
+            <br>
+            {{ordersDetails[order.id]?.details.address?.address1}}<br>
+            {{ordersDetails[order.id]?.details.address?.address2}}<br>
+            {{ordersDetails[order.id]?.details.address?.zipCode}} {{ordersDetails[order.id]?.details.address?.city}}
+
+          </div>
+        </details>
         <button mat-fab color="primary" (click)="markAs('DONE', order)">
           <mat-icon>check</mat-icon>
         </button>
@@ -18,15 +35,14 @@
     </div>
   </div>
 
-  <div class="flex flex-col gap-2">
-    <h2 class="text-2xl">Livrées</h2>
-    <div class="flex flex-col gap-4" *ngFor="let order of deliveredOrders">
+  <div class="flex flex-col gap-4">
+    <h2 class="text-2xl font-display text-primary">Livrées</h2>
+    <div class="flex flex-col gap-8" *ngFor="let order of deliveredOrders">
       <div
-        class="flex justify-between w-full items-center p-4 bg-gray-200 rounded"
+        class="flex justify-between w-full items-center p-4 bg-gray-50 rounded-xl"
       >
         <div class="flex flex-col gap-4 h-full">
-          <span> No: {{ order.id }} </span>
-          <span> Prix: {{ order.total }} eur </span>
+          <span><strong>Commande {{order.id}}</strong> - {{order.total}}€</span>
         </div>
         <button mat-fab color="warn" (click)="markAs('TO_DELIVER', order)">
           <mat-icon>cancel</mat-icon>

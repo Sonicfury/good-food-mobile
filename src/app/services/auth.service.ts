@@ -27,6 +27,10 @@ export class AuthService {
       )
   }
 
+  logout() {
+    this.session = null;
+  }
+
   isAuthenticated(): boolean {
     return this._session !== null;
   }

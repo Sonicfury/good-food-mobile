@@ -20,7 +20,7 @@ import { OrdersComponent } from './components/orders/orders.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    OrdersComponent
+    OrdersComponent,
   ],
   imports: [
     CommonModule,
