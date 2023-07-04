@@ -13,7 +13,6 @@ body {
 
 .mat-mdc-snack-bar-container {
 
-  --mdc-snackbar-supporting-text-font: 'Poppins, sans-serif'
   &.custom-snackbar {
      &--success {
       --mdc-snackbar-container-color: hsl(105, 40%, 65%);
