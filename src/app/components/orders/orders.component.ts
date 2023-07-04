@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order, OrderDetails } from 'src/app/models/order';
+import { Order } from 'src/app/models/order';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrdersService, State } from 'src/app/services/orders.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -14,7 +14,6 @@ export class OrdersComponent implements OnInit {
   orders: Order[] = [];
   state$!: typeof this._ordersService.state$;
   deliveredOrders: Order[] = [];
-  // ordersDetails: Record<number, {isVisible: boolean, details: OrderDetails}> = {};
   ordersDetails: Record<number, { isVisible: boolean, details: any }> = {};
 
   constructor(

@@ -5,7 +5,7 @@ import {
 } from '@supabase/supabase-js';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
-import { Order, OrderDetails } from '../models/order';
+import { Order } from '../models/order';
 import { AuthService } from './auth.service';
 import { SupabaseService } from './supabase.service';
 
@@ -41,20 +41,6 @@ export class OrdersService {
     ).pipe(switchMap((_) => of(order.id)));
   }
 
-  // getDetails(orderId: number): Observable<OrderDetails> {
-  //   return from(
-  //     this._supabaseService.supabase
-  //       .from('orders')
-  //       .select('
-  //               id,
-  //               total,
-  //               customer:customer_id(id, fistname, lastname),
-  //               address:addresses_id(address1, address2, zipCode, city, phone),
-  //               products:ordereds(name: string, quantity: number)
-  //               ')
-  //   ).pipe(map(({data}) => data as OrderDetails))
-  // }
-  //
   getDetails(orderId: number): Observable<any> {
     return from(
       this._supabaseService.supabase
